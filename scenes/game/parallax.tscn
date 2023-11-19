@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3e5242bkn2in"]
+
+[ext_resource type="Texture2D" uid="uid://nurd04bskrnv" path="res://assets/sprites/spaceBG.png" id="1_ekjnd"]
+
+[node name="Parallax" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_base_offset = Vector2(0, 25)
+
+[node name="Stars" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(1, 0.5)
+motion_mirroring = Vector2(0, 112)
+
+[node name="Sprite" type="Sprite2D" parent="ParallaxBackground/Stars"]
+texture = ExtResource("1_ekjnd")
+centered = false
+offset = Vector2(-32, 0)
+region_rect = Rect2(0, 0, 64, 112)

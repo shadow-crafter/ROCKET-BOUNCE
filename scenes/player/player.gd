@@ -11,7 +11,7 @@ func _physics_process(delta: float) -> void:
 	move_player(delta)
 
 func move_player(delta: float) -> void:
-	#velocity.y = move_toward(velocity.y, TERMINAL_VEL, GRAVITY * delta)
+	velocity.y = move_toward(velocity.y, TERMINAL_VEL, GRAVITY * delta)
 	
 	player_jump()
 	
