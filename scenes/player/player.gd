@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var TERMINAL_VEL: float = 150.0
 
 @onready var sprite: Sprite2D = $Sprite
+@onready var fire_emitter: GPUParticles2D = $FireParticle
 
 func _physics_process(delta: float) -> void:
 	move_player(delta)
@@ -20,3 +21,7 @@ func move_player(delta: float) -> void:
 func player_jump() -> void:
 	if Input.is_action_just_pressed("THEBUTTON"):
 		velocity.y = -bounce_speed
+		
+		fire_emitter.emitting = false
+		await get_tree().create_timer(1).timeout
+		fire_emitter.emitting = true

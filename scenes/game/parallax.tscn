@@ -8,7 +8,7 @@
 scroll_base_offset = Vector2(0, 25)
 
 [node name="Stars" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(1, 0.5)
+motion_scale = Vector2(1, 0.35)
 motion_mirroring = Vector2(0, 112)
 
 [node name="Sprite" type="Sprite2D" parent="ParallaxBackground/Stars"]
