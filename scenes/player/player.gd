@@ -7,6 +7,8 @@ extends CharacterBody2D
 
 @onready var sprite: Sprite2D = $Sprite
 @onready var fire_emitter: GPUParticles2D = $FireParticle
+@onready var bounce_sound: AudioStreamPlayer2D = $BounceSound
+@onready var rocket_bgsound: AudioStreamPlayer2D = $RocketBg
 
 func _physics_process(delta: float) -> void:
 	move_player(delta)
@@ -22,6 +24,11 @@ func player_jump() -> void:
 	if Input.is_action_just_pressed("THEBUTTON"):
 		velocity.y = -bounce_speed
 		
+		bounce_sound.pitch_scale = 1 + randf_range(-0.1, 0.1)
+		bounce_sound.play()
+		
 		fire_emitter.emitting = false
+		rocket_bgsound.stop()
 		await get_tree().create_timer(1).timeout
 		fire_emitter.emitting = true
+		rocket_bgsound.play()

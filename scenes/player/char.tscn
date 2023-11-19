@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://byd88fx4du7e4"]
+[gd_scene load_steps=9 format=3 uid="uid://byd88fx4du7e4"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_058q6"]
 [ext_resource type="Texture2D" uid="uid://dmpvi2uo33pb0" path="res://assets/sprites/spaceship.png" id="2_qh1bu"]
+[ext_resource type="AudioStream" uid="uid://yv07xmt4ar3s" path="res://assets/audio/brrwsh.wav" id="3_8ndu5"]
+[ext_resource type="AudioStream" uid="uid://c2pagg3goykeo" path="res://assets/audio/rocket.wav" id="4_vxg53"]
 
 [sub_resource type="Gradient" id="Gradient_lud4c"]
 offsets = PackedFloat32Array(0.00740741, 0.592593, 0.859259, 1)
@@ -47,10 +49,16 @@ lifetime = 0.25
 randomness = 0.25
 
 [node name="Collider" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("RectangleShape2D_dygid")
 debug_color = Color(0, 0.639216, 0.356863, 0.419608)
 
 [node name="Cam" type="Camera2D" parent="."]
 offset = Vector2(0, 25)
 drag_vertical_enabled = true
+
+[node name="BounceSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_8ndu5")
+
+[node name="RocketBg" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_vxg53")
+autoplay = true
