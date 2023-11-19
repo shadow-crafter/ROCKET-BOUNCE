@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://byd88fx4du7e4"]
+
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_058q6"]
+[ext_resource type="Texture2D" uid="uid://dmpvi2uo33pb0" path="res://assets/sprites/spaceship.png" id="2_qh1bu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dygid"]
+size = Vector2(16, 16)
+
+[node name="Char" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_058q6")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_qh1bu")
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dygid")
+debug_color = Color(0, 0.639216, 0.356863, 0.419608)
+
+[node name="Cam" type="Camera2D" parent="."]
+offset = Vector2(0, 25)
+zoom = Vector2(4.5, 4.5)
+drag_vertical_enabled = true

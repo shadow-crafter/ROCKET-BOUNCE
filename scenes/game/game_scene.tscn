@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://c11qrl0q4cr27"]
+
+[ext_resource type="PackedScene" uid="uid://byd88fx4du7e4" path="res://scenes/player/char.tscn" id="1_2b0yq"]
+
+[sub_resource type="Curve2D" id="Curve2D_vc50w"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -57, -47, 0, 0, 0, 0, -57, 97)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_5jp62"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 57, -47, 0, 0, 0, 0, 57, 97)
+}
+point_count = 2
+
+[node name="GameScene" type="Node2D"]
+
+[node name="Char" parent="." instance=ExtResource("1_2b0yq")]
+
+[node name="AsteroidSpawner" type="Node2D" parent="."]
+
+[node name="Path1" type="Path2D" parent="AsteroidSpawner"]
+curve = SubResource("Curve2D_vc50w")
+
+[node name="Path2" type="Path2D" parent="AsteroidSpawner"]
+curve = SubResource("Curve2D_5jp62")
