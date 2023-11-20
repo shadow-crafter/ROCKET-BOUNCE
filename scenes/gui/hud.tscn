@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqqt7vm8oqa0p"]
+
+[ext_resource type="Theme" uid="uid://cqb5v4ysfrkvj" path="res://scenes/gui/main_theme.tres" id="1_ufebr"]
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ufebr")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "SCORE: 000"
