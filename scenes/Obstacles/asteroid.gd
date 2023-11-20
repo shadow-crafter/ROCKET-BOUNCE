@@ -10,6 +10,7 @@ var direction: float
 var rotation_speed : float
 
 @onready var sprite: Sprite2D = $Sprite
+@onready var asteroid_hit_sound: AudioStreamPlayer2D = $AsteroidHit
 
 func _ready() -> void:
 	scale *= randf_range(0.5, 1.5)
@@ -25,6 +26,9 @@ func _process(delta: float) -> void:
 func _on_hitbox_body_entered(body: player) -> void:
 	if body is player:
 		body.hit_asteroid()
+		
+		asteroid_hit_sound.pitch_scale = 1 + randf_range(-0.1, 0.1)
+		asteroid_hit_sound.play()
 		
 		var tween: Tween = create_tween()
 		tween.tween_property(self, "scale", Vector2.ZERO, 0.4)

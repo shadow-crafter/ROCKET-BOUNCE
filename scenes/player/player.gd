@@ -16,6 +16,7 @@ var alive: bool = true
 @onready var rocket_bgsound: AudioStreamPlayer2D = $SoundContainer/RocketBg
 
 func _physics_process(delta: float) -> void:
+	print("Score: " + str(round(position.y / 10)))
 	if alive:
 		move_player(delta)
 
@@ -38,6 +39,8 @@ func player_jump() -> void:
 
 func hit_asteroid() -> void:
 	health -= 1
+	
+	# OUCHY, CHANGE SPRITE TO CRACKING
 	if health == 0:
 		alive = false
 		velocity = Vector2.ZERO
