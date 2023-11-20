@@ -206,7 +206,7 @@ void process() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3r4e8"]
 shader = SubResource("Shader_3gv2h")
-shader_parameter/direction = Vector3(1, 0, 0)
+shader_parameter/direction = Vector3(1, -1, 0)
 shader_parameter/spread = 45.0
 shader_parameter/flatness = 0.0
 shader_parameter/initial_linear_velocity_min = 4.0
@@ -236,7 +236,7 @@ shader_parameter/anim_offset_max = 0.0
 shader_parameter/lifetime_randomness = 0.0
 shader_parameter/emission_box_extents = Vector3(8, 8, 1)
 shader_parameter/color_value = Color(1, 1, 1, 1)
-shader_parameter/gravity = Vector3(0, -1e-06, 0)
+shader_parameter/gravity = Vector3(0, -1, 0)
 shader_parameter/sprite = ExtResource("1_fur27")
 
 [node name="ShipExplode" type="GPUParticles2D"]

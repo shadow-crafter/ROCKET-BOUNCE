@@ -6,6 +6,7 @@ class_name player extends CharacterBody2D
 @export var TERMINAL_VEL: float = 150.0
 
 var health: int = 3
+var alive: bool = true
 
 @onready var sprite: Sprite2D = $Sprite
 @onready var animator: AnimationPlayer = $Animator
@@ -15,7 +16,8 @@ var health: int = 3
 @onready var rocket_bgsound: AudioStreamPlayer2D = $SoundContainer/RocketBg
 
 func _physics_process(delta: float) -> void:
-	move_player(delta)
+	if alive:
+		move_player(delta)
 
 func move_player(delta: float) -> void:
 	velocity.y = move_toward(velocity.y, TERMINAL_VEL, GRAVITY * delta)
@@ -31,15 +33,12 @@ func player_jump() -> void:
 		bounce_sound.pitch_scale = 1 + randf_range(-0.1, 0.1)
 		bounce_sound.play()
 		
-		fire_emitter.emitting = false
-		rocket_bgsound.stop()
-		
 		bounce_timer.start()
-		await get_tree().create_timer(1).timeout
-		fire_emitter.emitting = true
-		rocket_bgsound.play()
+		animator.play("bounce")
 
 func hit_asteroid() -> void:
 	health -= 1
 	if health == 0:
+		alive = false
+		velocity = Vector2.ZERO
 		animator.play("die")
