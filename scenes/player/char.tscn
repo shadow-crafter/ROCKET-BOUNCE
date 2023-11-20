@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://byd88fx4du7e4"]
+[gd_scene load_steps=14 format=3 uid="uid://byd88fx4du7e4"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_058q6"]
 [ext_resource type="Texture2D" uid="uid://dmpvi2uo33pb0" path="res://assets/sprites/spaceship.png" id="2_qh1bu"]
+[ext_resource type="PackedScene" uid="uid://m0y0b23lculx" path="res://scenes/player/ship_explode.tscn" id="3_2kye6"]
 [ext_resource type="AudioStream" uid="uid://yv07xmt4ar3s" path="res://assets/audio/brrwsh.wav" id="3_8ndu5"]
 [ext_resource type="AudioStream" uid="uid://c2pagg3goykeo" path="res://assets/audio/rocket.wav" id="4_vxg53"]
+[ext_resource type="AudioStream" uid="uid://b5rg0gur8027h" path="res://assets/audio/ship_explode.wav" id="5_n0800"]
 
 [sub_resource type="Gradient" id="Gradient_lud4c"]
 offsets = PackedFloat32Array(0.00740741, 0.592593, 0.859259, 1)
@@ -30,6 +32,118 @@ color_ramp = SubResource("GradientTexture1D_iuba6")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dygid"]
 size = Vector2(16, 16)
 
+[sub_resource type="Animation" id="Animation_8737t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShipExplode:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FireParticle:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_p30lc"]
+resource_name = "die"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShipExplode:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FireParticle:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SoundContainer/ShipExplode")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yb81v"]
+_data = {
+"RESET": SubResource("Animation_8737t"),
+"die": SubResource("Animation_p30lc")
+}
+
 [node name="Char" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 2
 collision_mask = 0
@@ -48,6 +162,8 @@ process_material = SubResource("ParticleProcessMaterial_7tjja")
 lifetime = 0.25
 randomness = 0.25
 
+[node name="ShipExplode" parent="." instance=ExtResource("3_2kye6")]
+
 [node name="Collider" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_dygid")
 debug_color = Color(0, 0.639216, 0.356863, 0.419608)
@@ -59,9 +175,19 @@ drag_vertical_enabled = true
 [node name="BounceCooldown" type="Timer" parent="."]
 one_shot = true
 
-[node name="BounceSound" type="AudioStreamPlayer2D" parent="."]
+[node name="SoundContainer" type="Node2D" parent="."]
+
+[node name="BounceSound" type="AudioStreamPlayer2D" parent="SoundContainer"]
 stream = ExtResource("3_8ndu5")
 
-[node name="RocketBg" type="AudioStreamPlayer2D" parent="."]
+[node name="RocketBg" type="AudioStreamPlayer2D" parent="SoundContainer"]
 stream = ExtResource("4_vxg53")
 autoplay = true
+
+[node name="ShipExplode" type="AudioStreamPlayer2D" parent="SoundContainer"]
+stream = ExtResource("5_n0800")
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_yb81v")
+}

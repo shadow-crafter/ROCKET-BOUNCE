@@ -5,11 +5,14 @@ class_name player extends CharacterBody2D
 @export var GRAVITY: float = 100.0
 @export var TERMINAL_VEL: float = 150.0
 
+var health: int = 3
+
 @onready var sprite: Sprite2D = $Sprite
+@onready var animator: AnimationPlayer = $Animator
 @onready var bounce_timer: Timer = $BounceCooldown
 @onready var fire_emitter: GPUParticles2D = $FireParticle
-@onready var bounce_sound: AudioStreamPlayer2D = $BounceSound
-@onready var rocket_bgsound: AudioStreamPlayer2D = $RocketBg
+@onready var bounce_sound: AudioStreamPlayer2D = $SoundContainer/BounceSound
+@onready var rocket_bgsound: AudioStreamPlayer2D = $SoundContainer/RocketBg
 
 func _physics_process(delta: float) -> void:
 	move_player(delta)
@@ -37,4 +40,6 @@ func player_jump() -> void:
 		rocket_bgsound.play()
 
 func hit_asteroid() -> void:
-	pass
+	health -= 1
+	if health == 0:
+		animator.play("die")
