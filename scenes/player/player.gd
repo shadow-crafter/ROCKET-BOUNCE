@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var TERMINAL_VEL: float = 150.0
 
 @onready var sprite: Sprite2D = $Sprite
+@onready var bounce_timer: Timer = $BounceCooldown
 @onready var fire_emitter: GPUParticles2D = $FireParticle
 @onready var bounce_sound: AudioStreamPlayer2D = $BounceSound
 @onready var rocket_bgsound: AudioStreamPlayer2D = $RocketBg
@@ -21,7 +22,7 @@ func move_player(delta: float) -> void:
 	move_and_slide()
 
 func player_jump() -> void:
-	if Input.is_action_just_pressed("THEBUTTON"):
+	if Input.is_action_just_pressed("THEBUTTON") and bounce_timer.is_stopped():
 		velocity.y = -bounce_speed
 		
 		bounce_sound.pitch_scale = 1 + randf_range(-0.1, 0.1)
@@ -29,6 +30,8 @@ func player_jump() -> void:
 		
 		fire_emitter.emitting = false
 		rocket_bgsound.stop()
+		
+		bounce_timer.start()
 		await get_tree().create_timer(1).timeout
 		fire_emitter.emitting = true
 		rocket_bgsound.play()

@@ -56,6 +56,9 @@ debug_color = Color(0, 0.639216, 0.356863, 0.419608)
 offset = Vector2(0, 25)
 drag_vertical_enabled = true
 
+[node name="BounceCooldown" type="Timer" parent="."]
+one_shot = true
+
 [node name="BounceSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_8ndu5")
 
