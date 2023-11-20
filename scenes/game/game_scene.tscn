@@ -11,3 +11,5 @@
 [node name="Char" parent="." instance=ExtResource("1_2b0yq")]
 
 [node name="AsteroidSpawner" parent="Char" instance=ExtResource("2_t7lhk")]
+
+[node name="AsteroidContainer" type="Node2D" parent="." groups=["AsteroidContainer"]]

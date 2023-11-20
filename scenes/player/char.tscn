@@ -32,7 +32,7 @@ size = Vector2(16, 16)
 
 [node name="Char" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 2
-collision_mask = 4
+collision_mask = 0
 script = ExtResource("1_058q6")
 bounce_speed = 50.0
 GRAVITY = 50.0

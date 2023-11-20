@@ -22,5 +22,14 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	sprite.rotate(rotation_speed * delta)
 
+func _on_hitbox_body_entered(body: player) -> void:
+	if body is player:
+		body.hit_asteroid()
+		
+		var tween: Tween = create_tween()
+		tween.tween_property(self, "scale", Vector2.ZERO, 0.4)
+		tween.tween_callback(self.queue_free)
+
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	print_debug("quefreeeeeee!")
 	queue_free()

@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name player extends CharacterBody2D
 
 @export var bounce_speed: float = 100.0
 
@@ -35,3 +35,6 @@ func player_jump() -> void:
 		await get_tree().create_timer(1).timeout
 		fire_emitter.emitting = true
 		rocket_bgsound.play()
+
+func hit_asteroid() -> void:
+	pass
