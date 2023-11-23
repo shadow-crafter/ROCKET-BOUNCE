@@ -15,7 +15,11 @@ var rotation_speed : float
 
 func _ready() -> void:
 	scale *= randf_range(0.5, 1.5)
+	
 	sprite.frame = randi_range(0, 3)
+	if randi_range(0, 100) == 50 and Score.score >= 100:
+		sprite.visible = false
+		$JimmySprite.visible = true
 	
 	rotation_speed = deg_to_rad(randf_range(rotation_speed_min, rotation_speed_max))
 	

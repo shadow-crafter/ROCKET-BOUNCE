@@ -48,7 +48,8 @@ func player_jump() -> void:
 
 func hit_asteroid() -> void:
 	health -= 1
-	# OUCHY, CHANGE SPRITE TO CRACKING
+	sprite.frame = min(2, 3 - health)
+	
 	if health == 0:
 		alive = false
 		velocity = Vector2.ZERO

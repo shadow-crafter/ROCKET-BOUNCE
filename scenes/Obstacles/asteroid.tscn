@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dtka2niwhrsik"]
+[gd_scene load_steps=6 format=3 uid="uid://dtka2niwhrsik"]
 
 [ext_resource type="Texture2D" uid="uid://cprxq5krh3abi" path="res://assets/sprites/Asteroids.png" id="1_j7624"]
 [ext_resource type="Script" path="res://scenes/Obstacles/asteroid.gd" id="1_q014c"]
+[ext_resource type="Texture2D" uid="uid://74m53nn5aste" path="res://assets/sprites/jimmy.png" id="3_jikk6"]
 [ext_resource type="AudioStream" uid="uid://cdhkd7i2gn4d1" path="res://assets/audio/asteroid_hit.wav" id="3_yulga"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3ioii"]
@@ -20,6 +21,11 @@ rotation_speed_max = 50.0
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_j7624")
 hframes = 4
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="JimmySprite" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_jikk6")
 region_rect = Rect2(0, 0, 16, 16)
 
 [node name="Collider" type="CollisionShape2D" parent="."]

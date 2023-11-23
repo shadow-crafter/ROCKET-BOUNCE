@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://byd88fx4du7e4"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_058q6"]
-[ext_resource type="Texture2D" uid="uid://dmpvi2uo33pb0" path="res://assets/sprites/spaceship.png" id="2_qh1bu"]
+[ext_resource type="Texture2D" uid="uid://dgcn7qblhn57h" path="res://assets/sprites/spaceship2.png" id="2_hrvvv"]
 [ext_resource type="PackedScene" uid="uid://m0y0b23lculx" path="res://scenes/player/ship_explode.tscn" id="3_2kye6"]
 [ext_resource type="AudioStream" uid="uid://yv07xmt4ar3s" path="res://assets/audio/brrwsh.wav" id="3_8ndu5"]
 [ext_resource type="AudioStream" uid="uid://c2pagg3goykeo" path="res://assets/audio/rocket.wav" id="4_vxg53"]
@@ -267,7 +267,9 @@ GRAVITY = 50.0
 TERMINAL_VEL = 100.0
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_qh1bu")
+texture = ExtResource("2_hrvvv")
+hframes = 3
+region_rect = Rect2(0, 0, 16, 16)
 
 [node name="FireParticle" type="GPUParticles2D" parent="."]
 position = Vector2(0, -6)
@@ -286,6 +288,7 @@ debug_color = Color(0, 0.639216, 0.356863, 0.419608)
 [node name="Cam" type="Camera2D" parent="."]
 offset = Vector2(0, 25)
 limit_left = -32
+limit_top = -32
 limit_right = 32
 drag_vertical_enabled = true
 drag_top_margin = 0.08
