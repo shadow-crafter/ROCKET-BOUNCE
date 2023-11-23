@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqqt7vm8oqa0p"]
+[gd_scene load_steps=3 format=3 uid="uid://cqqt7vm8oqa0p"]
 
+[ext_resource type="Script" path="res://scenes/gui/hud.gd" id="1_k16lx"]
 [ext_resource type="Theme" uid="uid://cqb5v4ysfrkvj" path="res://scenes/gui/main_theme.tres" id="1_ufebr"]
 
 [node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_k16lx")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -21,7 +23,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="Control/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+
+[node name="ScoreLabel" type="Label" parent="Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 text = "SCORE: 000"
+autowrap_mode = 2
+
+[node name="HighScoreLabel" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+text = "HIGHSCORE: 000"
+autowrap_mode = 2
