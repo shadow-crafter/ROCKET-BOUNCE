@@ -10,6 +10,7 @@ var direction: float
 var rotation_speed : float
 
 @onready var sprite: Sprite2D = $Sprite
+@onready var collider: CollisionShape2D = $Collider
 @onready var asteroid_hit_sound: AudioStreamPlayer2D = $AsteroidHit
 
 func _ready() -> void:
@@ -26,6 +27,8 @@ func _process(delta: float) -> void:
 func _on_hitbox_body_entered(body: player) -> void:
 	if body is player:
 		body.hit_asteroid()
+		
+		collider.queue_free()
 		
 		asteroid_hit_sound.pitch_scale = 1 + randf_range(-0.1, 0.1)
 		asteroid_hit_sound.play()

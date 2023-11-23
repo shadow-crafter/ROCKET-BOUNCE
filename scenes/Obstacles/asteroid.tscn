@@ -36,7 +36,7 @@ shape = SubResource("CircleShape2D_3ioii")
 debug_color = Color(1, 0.32549, 0.258824, 0.203922)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-rect = Rect2(-16, -16, 32, 32)
+rect = Rect2(-21, -21, 42, 42)
 
 [node name="AsteroidHit" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_yulga")

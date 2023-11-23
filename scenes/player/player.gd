@@ -20,6 +20,9 @@ func _physics_process(delta: float) -> void:
 	if alive:
 		move_player(delta)
 		Score.update_score(round(position.y / 10))
+	elif Input.is_action_just_pressed("THEBUTTON"):
+		Score.score = 0
+		get_tree().reload_current_scene()
 
 func move_player(delta: float) -> void:
 	velocity.y = move_toward(velocity.y, TERMINAL_VEL, GRAVITY * delta)
@@ -45,7 +48,6 @@ func player_jump() -> void:
 
 func hit_asteroid() -> void:
 	health -= 1
-	
 	# OUCHY, CHANGE SPRITE TO CRACKING
 	if health == 0:
 		alive = false
