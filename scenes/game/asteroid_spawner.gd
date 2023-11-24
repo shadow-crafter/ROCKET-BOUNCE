@@ -9,8 +9,7 @@ var to_spawn: int = 1
 @onready var plr: player = get_tree().get_first_node_in_group("Player")
 
 func _on_spawn_timer_timeout() -> void:
-	to_spawn = 1 + round(Score.score / 200)
-	print_debug(to_spawn)
+	to_spawn = 1 + round(Score.score / 200.0)
 	
 	for i in range(to_spawn):
 		spawn_asteroid()
