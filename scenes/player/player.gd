@@ -47,7 +47,7 @@ func hit_asteroid() -> void:
 	health -= 1
 	sprite.frame = min(2, 3 - health)
 	
-	if health == 0:
+	if health <= 0:
 		alive = false
 		velocity = Vector2.ZERO
 		

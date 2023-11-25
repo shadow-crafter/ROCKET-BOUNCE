@@ -17,7 +17,7 @@ func _ready() -> void:
 	scale *= randf_range(0.5, 1.5)
 	
 	sprite.frame = randi_range(0, 3)
-	if randi_range(0, 100) == 50 and Score.score >= 100:
+	if randi_range(0, 150) == 50 and Score.score >= 100:
 		sprite.visible = false
 		$JimmySprite.visible = true
 	

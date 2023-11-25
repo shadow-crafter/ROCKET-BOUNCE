@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://c11qrl0q4cr27"]
+[gd_scene load_steps=7 format=3 uid="uid://c11qrl0q4cr27"]
 
 [ext_resource type="PackedScene" uid="uid://byd88fx4du7e4" path="res://scenes/player/char.tscn" id="1_2b0yq"]
 [ext_resource type="PackedScene" uid="uid://cqqt7vm8oqa0p" path="res://scenes/gui/hud.tscn" id="1_lnux5"]
 [ext_resource type="PackedScene" uid="uid://d3e5242bkn2in" path="res://scenes/game/parallax.tscn" id="1_x6224"]
 [ext_resource type="PackedScene" uid="uid://4oty1dgvujvp" path="res://scenes/game/asteroid_spawner.tscn" id="2_t7lhk"]
 [ext_resource type="AudioStream" uid="uid://d08jwoemytket" path="res://assets/audio/asteroids_abundant.wav" id="5_5gjsw"]
+[ext_resource type="PackedScene" uid="uid://qtm0th274lj8" path="res://scenes/Obstacles/alien_attacker.tscn" id="5_8o0kx"]
 
 [node name="GameScene" type="Node2D"]
 
@@ -17,6 +18,9 @@
 [node name="AsteroidSpawner" parent="Char" instance=ExtResource("2_t7lhk")]
 
 [node name="AsteroidContainer" type="Node2D" parent="." groups=["AsteroidContainer"]]
+
+[node name="AlienAttacker" parent="." instance=ExtResource("5_8o0kx")]
+position = Vector2(-32, 0)
 
 [node name="Music" type="AudioStreamPlayer" parent="." groups=["MusicPlayer"]]
 stream = ExtResource("5_5gjsw")
