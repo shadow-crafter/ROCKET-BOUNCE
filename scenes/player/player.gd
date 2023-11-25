@@ -52,4 +52,5 @@ func hit_asteroid() -> void:
 		velocity = Vector2.ZERO
 		
 		Score.update_highscore()
+		get_tree().get_first_node_in_group("MusicPlayer").stop()
 		animator.play("die")

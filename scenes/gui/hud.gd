@@ -13,7 +13,8 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("THEBUTTON") and can_restart:
 		Score.score = 0
-		get_tree().reload_current_scene()
+		SceneTransition.change_scene("res://scenes/game/game_scene.tscn")
+		#get_tree().reload_current_scene()
 
 func update_score_text(new_score: int):
 	score_label.text = "SCORE: " + str(new_score)

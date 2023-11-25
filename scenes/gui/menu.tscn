@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://d2qeux47t6x6i"]
+[gd_scene load_steps=8 format=3 uid="uid://d2qeux47t6x6i"]
 
 [ext_resource type="Theme" uid="uid://cqb5v4ysfrkvj" path="res://scenes/gui/main_theme.tres" id="1_n4pm6"]
 [ext_resource type="Script" path="res://scenes/gui/menu.gd" id="2_mk82f"]
 [ext_resource type="Texture2D" uid="uid://lsvfsds17slj" path="res://assets/sprites/spaceBG2.png" id="3_d466e"]
+[ext_resource type="PackedScene" uid="uid://4oty1dgvujvp" path="res://scenes/game/asteroid_spawner.tscn" id="3_pqqp5"]
 
 [sub_resource type="Animation" id="Animation_nupqj"]
 length = 0.001
@@ -51,6 +52,13 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_n4pm6")
 script = ExtResource("2_mk82f")
+
+[node name="AsteroidSpawner" parent="." instance=ExtResource("3_pqqp5")]
+position = Vector2(32, 32)
+in_menu = true
+
+[node name="AsteroidContainer" type="Node2D" parent="." groups=["AsteroidContainer"]]
+position = Vector2(32, 32)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 

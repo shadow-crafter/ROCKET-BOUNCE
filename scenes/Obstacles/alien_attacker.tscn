@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://qtm0th274lj8"]
+
+[ext_resource type="Texture2D" uid="uid://74m53nn5aste" path="res://assets/sprites/jimmy.png" id="1_bhmef"]
+[ext_resource type="Script" path="res://scenes/Obstacles/alien_attacker.gd" id="1_ibyxs"]
+
+[node name="AlienAttacker" type="Node2D"]
+script = ExtResource("1_ibyxs")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(32, 8)
+texture = ExtResource("1_bhmef")
+
+[node name="MovementSpots" type="Node2D" parent="."]
+
+[node name="Spot1" type="Marker2D" parent="MovementSpots"]
+position = Vector2(11, 0)
+
+[node name="Spot2" type="Marker2D" parent="MovementSpots"]
+position = Vector2(32, 0)
+
+[node name="Spot3" type="Marker2D" parent="MovementSpots"]
+position = Vector2(53, 0)
