@@ -288,7 +288,6 @@ debug_color = Color(0, 0.639216, 0.356863, 0.419608)
 [node name="Cam" type="Camera2D" parent="."]
 offset = Vector2(0, 25)
 limit_left = -32
-limit_top = -32
 limit_right = 32
 drag_vertical_enabled = true
 drag_top_margin = 0.08

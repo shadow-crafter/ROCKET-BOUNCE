@@ -42,12 +42,21 @@ func move_ufo() -> void:
 	cycles -= 1
 	
 	if cycles <= 0:
+		if 1 > movement_spots.find(current_spot):
+			sprite.play("Right_Blink")
+		else:
+			sprite.play("Left_Blink")
+		
+		await get_tree().create_timer(1).timeout
+		
 		var tween: Tween = create_tween()
 		tween.tween_property(sprite, "position", movement_spots[1].position, move_time)
 		
 		await tween.finished
 		
 		cycle_timer.stop()
+		
+		sprite.play("Idle")
 		animator.play("fly_out")
 	else:
 		var go_to: Marker2D = current_spot
