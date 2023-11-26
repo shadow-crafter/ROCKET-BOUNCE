@@ -1,4 +1,4 @@
-# BUTTON-ONE
+# ROCKET-BOUNCE
 A game made for the 1-Button game jam.
 
 ![gameicon](https://github.com/Shadowcrafter2017/BUTTON-ONE/assets/65373035/7c4cb7d6-1ae6-402f-96ef-c2ce45277dce)
