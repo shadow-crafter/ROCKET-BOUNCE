@@ -1,16 +1,8 @@
 extends Node2D
 
-"""
-UFO
-flies into middle of frame. after a second, fires a translucent beam over the player.
-every [4-8] seconds, move to a random spot, bringing the player with them.
-lights flash to indicate what direction it will move before it does. (like turn signal)
-
-goes away after 5 cycles. The UFO returns every [200] score.
-final cycle brings you back to center.
-"""
-@export var move_time: float = 1.2
-@export var cycles_to_do: int = 5
+@export var move_time: float = 1.5
+@export var cycles_to_do: int = 4
+@export var appearance_threshold: int = 150
 
 var cycles: int
 var count: float = 0.0
@@ -21,18 +13,15 @@ var count: float = 0.0
 
 @onready var plr: player = get_tree().get_first_node_in_group("Player")
 @onready var current_spot: Marker2D = $MovementSpots/Middle
-@onready var sprite: Sprite2D = $Sprite
+@onready var sprite: AnimatedSprite2D = $Sprite
 @onready var cycle_timer: Timer = $CycleTimer
 @onready var animator: AnimationPlayer = $Animator
 
 func _process(delta: float) -> void:
-	if Score.score % 150 == 0 and Score.score > 1:
+	if Score.score % appearance_threshold == 0 and Score.score > 1:
 		if cycle_timer.is_stopped():
 			start_ufo()
-		else:
-			cycles += cycles_to_do
 	ufo_interaction(delta)
-	print("Cycles: " + str(cycles))
 
 func start_ufo() -> void:
 	animator.play("fly_in")
@@ -44,7 +33,7 @@ func start_ufo() -> void:
 func ufo_interaction(delta: float) -> void:
 	count += 4.0 * delta
 	sprite.offset.y = sin(count) * 2.0
-	global_position.y = -42 + plr.position.y
+	global_position.y = -34 + plr.position.y
 	
 	if not cycle_timer.is_stopped():
 		plr.position.x = sprite.global_position.x
@@ -65,9 +54,19 @@ func move_ufo() -> void:
 		while go_to == current_spot:
 			go_to = movement_spots.pick_random()
 
+		if movement_spots.find(go_to) > movement_spots.find(current_spot):
+			sprite.play("Right_Blink")
+		else:
+			sprite.play("Left_Blink")
+		
+		await get_tree().create_timer(1).timeout
+		
 		var tween: Tween = create_tween()
 		tween.tween_property(sprite, "position", go_to.position, move_time)
 		
+		await tween.finished
+		
+		sprite.play("Idle")
 		current_spot = go_to
 
 func _on_cycle_timer_timeout() -> void:

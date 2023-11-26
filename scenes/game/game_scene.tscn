@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://cqqt7vm8oqa0p" path="res://scenes/gui/hud.tscn" id="1_lnux5"]
 [ext_resource type="PackedScene" uid="uid://d3e5242bkn2in" path="res://scenes/game/parallax.tscn" id="1_x6224"]
 [ext_resource type="PackedScene" uid="uid://4oty1dgvujvp" path="res://scenes/game/asteroid_spawner.tscn" id="2_t7lhk"]
-[ext_resource type="AudioStream" uid="uid://d08jwoemytket" path="res://assets/audio/asteroids_abundant.wav" id="5_5gjsw"]
 [ext_resource type="PackedScene" uid="uid://qtm0th274lj8" path="res://scenes/Obstacles/alien_attacker.tscn" id="5_8o0kx"]
+[ext_resource type="AudioStream" uid="uid://cotrj4cyif8x" path="res://assets/audio/ufos_galore.wav" id="6_kdi1g"]
 
 [node name="GameScene" type="Node2D"]
 
@@ -23,6 +23,6 @@
 position = Vector2(-32, 0)
 
 [node name="Music" type="AudioStreamPlayer" parent="." groups=["MusicPlayer"]]
-stream = ExtResource("5_5gjsw")
-volume_db = -5.0
+stream = ExtResource("6_kdi1g")
+volume_db = -10.0
 autoplay = true

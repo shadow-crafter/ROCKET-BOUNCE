@@ -15,4 +15,4 @@ func update_score(new_score: int):
 func update_highscore():
 	if score > highscore:
 		highscore = score
-		highscore_changed.emit(highscore)
+	highscore_changed.emit(highscore)
